@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import 'bulma'
+import Map from './components/Map'
 
 class App extends React.Component {
   render() {
     return (
-      <h1>Mapbox</h1>
+      <Map />
     )
   }
 }
