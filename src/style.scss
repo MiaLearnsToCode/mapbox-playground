@@ -1,18 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
+$score: 'Fredoka One', cursive;
+
 .barStyle {
   position: absolute;
   top: 20px; 
-  width: 15px;
+  width: 30px;
   border-radius: 15px
 }
 
 .firstBarStyle {
-  left: 10px;
+  left: 15px;
   background-color: #fad0c4;
   background-image: linear-gradient(315deg, #fad0c4 0%, #f1a7f1 74%);
 }
 
 .secondBarStyle {
-  right: 10px;
+  right: 15px;
   background-color: #aff6cf;
   background-image: linear-gradient(315deg, #aff6cf 0%, #9f98e8 74%)
 }
@@ -20,33 +23,33 @@
 .barBorder {
   position: absolute;
   top: 15px;
-  width: 25px;
-  height: 160px;
+  width: 40px;
+  height: 310px;
   background-color: transparent;
   border: 2px solid white;
-  border-radius: 15px
+  border-radius: 20px
 }
 
 .firstBarBorder {
-  left: 5px;
+  left: 10px;
 }
 
 .secondBarBorder {
-  right: 5px;
+  right: 10px;
 }
 
 .emoji {
-  font-size: 30px;
+  font-size: 40px;
   position: absolute;
-  top: 180px
+  top: 330px
 }
 
 .coffeeStyle {
-  left: 5px;
+  left: 10px;
 }
 
 .parkStyle {
-  right: 5px;
+  right: 10px;
 }
 
 .pointsStyle {
@@ -55,14 +58,15 @@
   top: 15px; 
   left: 45%;
   h1 {
-    font-size:40px;
+    font-size:70px;
     color: white;
+    font-family: $score;
   }
 }
 
 .marker {
-  height: 100px;
-  width: 140px; 
-  margin-top: -40px; 
-  margin-left: -40px 
+  height: 200px;
+  width: 270px; 
+  margin-top: -80px; 
+  margin-left: -80px 
 }

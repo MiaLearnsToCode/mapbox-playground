@@ -22,43 +22,63 @@ class Map extends React.Component {
       }, 
       layer: '',
       moves: 0,
-      coffeePoints: 0,
       touristPoints: 0,
-      parkPoints: 0, 
 
-      firstBarHeight: 150,
-      secondBarHeight: 150
-    }
-
-  //  
+      firstBarHeight: 300,
+      secondBarHeight: 300
+    }  
   }
   
   getLayerData() {
     const moves = this.state.moves + 1
     this.setState({ moves })
-
     if (moves % 300 === 0) {
       axios.get(`https://api.mapbox.com/v4/mapbox.mapbox-streets-v8/tilequery/${this.state.viewport.longitude},${this.state.viewport.latitude}.json?radius=100&layers=poi_label&access_token=${token}`)
         .then(res => {
           console.log(res.data)
           const lastLayer = res.data.features[0]
-          this.setState({ layer: lastLayer.properties.type })
+          const firstBarHeight = this.state.firstBarHeight - 5
+          const secondBarHeight = this.state.secondBarHeight - 5
+          this.setState({ layer: lastLayer.properties.type, firstBarHeight, secondBarHeight })
         })
         .catch(() => this.setState({ layer: '' }))
     }
-    
   }
 
   componentDidMount() {
     this.getLayerData()
   }
 
+  giphy() {
+    if (this.state.firstBarHeight > 150 && this.state.secondBarHeight > 150) {
+      return '../assets/happy.gif'
+    } else if (this.state.firstBarHeight <= 150 && this.state.secondBarHeight > 150) {
+      return '../assets/coffee.gif'
+    } else if (this.state.secondBarHeight <= 150 && this.state.firstBarHeight > 150) {
+      return '../assets/park.gif'
+    } else {
+      return '../assets/dead.gif'
+    }
+  }
+
   checkForPoint() {
     const attractions = ['Attraction', 'Museum', 'Memorial', 'Gallery', 'Castle']
     const parks = ['Park','Playground','Garden']
-    if (this.state.layer === 'Cafe') this.setState({ coffeePoints: this.state.coffeePoints + 1 })
-    if (parks.includes(this.state.layer)) this.setState({ parkPoints: this.state.parkPoints + 1 })
-    if (attractions.includes(this.state.layer)) this.setState({ touristPoints: this.state.touristPoints + 1 })
+    const firstBarHeight = this.state.firstBarHeight + 10
+    const secondBarHeight = this.state.secondBarHeight + 10
+    const touristPoints = this.state.touristPoints + 1
+
+    // coffee bar
+    if (this.state.layer === 'Cafe' && firstBarHeight < 295) {
+      this.setState({ firstBarHeight })
+    } 
+
+    // park bar
+    if (parks.includes(this.state.layer) && secondBarHeight < 295) {
+      this.setState({ secondBarHeight })
+    } 
+
+    if (attractions.includes(this.state.layer)) this.setState({ touristPoints })
     
   }
 
@@ -80,13 +100,13 @@ class Map extends React.Component {
           mapboxApiAccessToken={token} 
           mapStyle='mapbox://styles/miameroi/ck1jh3yp81bj41cmj37nj7w23'
         >
-          
+
           <Coffeebar firstBarHeight={this.state.firstBarHeight} />
           <Points touristPoints={this.state.touristPoints} />
           <Parkbar secondBarHeight={this.state.secondBarHeight} />
 
           <Marker latitude={this.state.viewport.latitude} longitude={this.state.viewport.longitude} >
-            <img src='../assets/happy.gif' className="marker"/>
+            <img src={this.giphy()} className="marker"/>
           </Marker> 
 
         </ReactMapGL >
