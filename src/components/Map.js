@@ -5,6 +5,10 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 
 const token = process.env.MAPBOX_ACCESS_TOKEN
 
+import Points from './game/Points'
+import Coffeebar from './game/Coffeebar'
+import Parkbar from './game/Parkbar'
+
 class Map extends React.Component {
   constructor() {
     super()
@@ -76,22 +80,15 @@ class Map extends React.Component {
           mapboxApiAccessToken={token} 
           mapStyle='mapbox://styles/miameroi/ck1jh3yp81bj41cmj37nj7w23'
         >
-          <div className="barStyle firstBarStyle" style={{ height: this.state.firstBarHeight }}></div>
-          <div className="barBorder firstBarBorder"></div>
-          <p className="emoji coffeeStyle">☕</p>
           
-          <div className="pointsStyle">
-            <h1>🏛️: {this.state.touristPoints}</h1>
-          </div>
+          <Coffeebar firstBarHeight={this.state.firstBarHeight} />
+          <Points touristPoints={this.state.touristPoints} />
+          <Parkbar secondBarHeight={this.state.secondBarHeight} />
 
-          <div className="barStyle secondBarStyle" style={{ height: this.state.secondBarHeight }}></div>
-          <div className="barBorder secondBarBorder"></div>
-          <p className="emoji parkStyle">🌳</p>
-
-          
           <Marker latitude={this.state.viewport.latitude} longitude={this.state.viewport.longitude} >
             <img src='../assets/happy.gif' className="marker"/>
           </Marker> 
+
         </ReactMapGL >
       </div>
     )
