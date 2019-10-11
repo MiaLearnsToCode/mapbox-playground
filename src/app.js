@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import './style.scss'
 import 'bulma'
 import Map from './components/Map'
 

@@ -22,68 +22,8 @@ class Map extends React.Component {
       touristPoints: 0,
       parkPoints: 0, 
 
-      barStyle: {
-        position: 'absolute',
-        left: 10,
-        top: 20, 
-        width: '15px',
-        height: '150px',
-        backgroundColor: '#fad0c4',
-        backgroundImage: 'linear-gradient(315deg, #fad0c4 0%, #f1a7f1 74%)',
-        borderRadius: '15px'
-      },
-      secondBarStyle: {
-        position: 'absolute',
-        right: 10,
-        top: 20,
-        width: '15px',
-        height: '150px',
-        backgroundColor: '#aff6cf',
-        backgroundImage: 'linear-gradient(315deg, #aff6cf 0%, #9f98e8 74%)',
-        borderRadius: '15px'
-      },
-
-      barBorder: {
-        position: 'absolute',
-        left: 5,
-        top: 15,
-        width: '25px',
-        height: '160px',
-        backgroundColor: 'transparent',
-        border: '2px solid white',
-        borderRadius: '15px'
-      },
-
-      secondBarBorder: {
-        position: 'absolute',
-        right: 5,
-        top: 15,
-        width: '25px',
-        height: '160px',
-        backgroundColor: 'transparent',
-        border: '2px solid white',
-        borderRadius: '15px'
-      },
-
-      coffeeStyle: {
-        fontSize: '30px',
-        position: 'absolute',
-        left: 5,
-        top: 180
-      }, 
-      parkStyle: {
-        fontSize: '30px',
-        position: 'absolute',
-        right: 5,
-        top: 180
-      },
-      pointsStyle: {
-        position: 'absolute',
-        margin: '0 auto',
-        top: 15, 
-        left: '50%'
-      }
-
+      firstBarHeight: 150,
+      secondBarHeight: 150
     }
 
   //  
@@ -136,21 +76,21 @@ class Map extends React.Component {
           mapboxApiAccessToken={token} 
           mapStyle='mapbox://styles/miameroi/ck1jh3yp81bj41cmj37nj7w23'
         >
-          <div style={this.state.barStyle}></div>
-          <div style={this.state.barBorder}></div>
-          <p style={this.state.coffeeStyle}>☕</p>
+          <div className="barStyle firstBarStyle" style={{ height: this.state.firstBarHeight }}></div>
+          <div className="barBorder firstBarBorder"></div>
+          <p className="emoji coffeeStyle">☕</p>
           
-          <div style={this.state.pointsStyle}>
+          <div className="pointsStyle">
             <h1>🏛️: {this.state.touristPoints}</h1>
           </div>
 
-          <div style={this.state.secondBarStyle}></div>
-          <div style={this.state.secondBarBorder}></div>
-          <p style={this.state.parkStyle}>🌳</p>
+          <div className="barStyle secondBarStyle" style={{ height: this.state.secondBarHeight }}></div>
+          <div className="barBorder secondBarBorder"></div>
+          <p className="emoji parkStyle">🌳</p>
 
           
           <Marker latitude={this.state.viewport.latitude} longitude={this.state.viewport.longitude} >
-            <img src='../assets/happy.gif' style={{ height: '100px',width: '140px', marginTop: '-40px', marginLeft: '-40px' }}/>
+            <img src='../assets/happy.gif' className="marker"/>
           </Marker> 
         </ReactMapGL >
       </div>
@@ -159,6 +99,3 @@ class Map extends React.Component {
 }
 
 export default Map
-
-
-// < iframe src = "https://giphy.com/embed/3ov9k9Y2tlz5HzILxm" style = {{ marginLeft: '-80px', marginTop: '-80px' }} width = "250" height = "250" frameBorder = "0" ></iframe >
