@@ -1,6 +1,51 @@
 @import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
-$score: 'Fredoka One', cursive;
 
+$score: 'Fredoka One', cursive;
+$black: #282a36;
+$blue: #44475a;
+$light: #f8f8f2;
+$pink: #ff79c6;
+
+// Tiles
+.tile {
+  background-color: $black;
+  color: $light;
+  font-family: $score;
+  .title {
+    font-size:40px;
+    margin: 20px;
+  }
+  .subtitle {
+    color: $pink;
+    margin: 20px;
+  }
+  .button {
+    background-color: $pink;
+    font-family: $score;
+    font-size: 40px; 
+    color: $light;
+    border: 1px solid $pink;
+    margin: 10%;
+    border-radius: 30px;
+  }
+  .flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .image {
+    height: 300px;
+    width:300px;
+  }
+}
+
+
+.notification {
+  background-color: $blue;
+}
+
+// In game
 .barStyle {
   position: absolute;
   top: 20px; 
