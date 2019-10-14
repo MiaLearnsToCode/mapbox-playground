@@ -9,7 +9,8 @@ const Welcome = () => (
           <div className="tile is-parent is-vertical">
             <article className="tile is-child notification">
               <p className="title">A Happy Bee</p>
-              <p className="subtitle">Powered by Mapbox</p>
+              <br />
+              <p className="subtitle">Made with Mapbox</p>
             </article>
             <article className="tile is-child notification">
               <p className="title">made by Mia</p>

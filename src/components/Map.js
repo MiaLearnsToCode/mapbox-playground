@@ -32,16 +32,18 @@ class Map extends React.Component {
   getLayerData() {
     const moves = this.state.moves + 1
     this.setState({ moves })
-    if (moves % 300 === 0) {
+
+    if (this.state.firstBarHeight > 0 && this.state.secondBarHeight > 0 && moves % 300 === 0) {
       axios.get(`https://api.mapbox.com/v4/mapbox.mapbox-streets-v8/tilequery/${this.state.viewport.longitude},${this.state.viewport.latitude}.json?radius=100&layers=poi_label&access_token=${token}`)
         .then(res => {
-          console.log(res.data)
           const lastLayer = res.data.features[0]
           const firstBarHeight = this.state.firstBarHeight - 5
           const secondBarHeight = this.state.secondBarHeight - 5
           this.setState({ layer: lastLayer.properties.type, firstBarHeight, secondBarHeight })
         })
         .catch(() => this.setState({ layer: '' }))
+    } else if (this.state.firstBarHeight === 0 && this.state.secondBarHeight === 0) {
+      this.props.history.push('/end')
     }
   }
 
@@ -50,11 +52,12 @@ class Map extends React.Component {
   }
 
   giphy() {
-    if (this.state.firstBarHeight > 150 && this.state.secondBarHeight > 150) {
+    const { firstBarHeight, secondBarHeight } = this.state
+    if (firstBarHeight > 150 && secondBarHeight > 150) {
       return '../assets/happy.gif'
-    } else if (this.state.firstBarHeight <= 150 && this.state.secondBarHeight > 150) {
+    } else if (this.state.firstBarHeight <= 150 && secondBarHeight > 150) {
       return '../assets/coffee.gif'
-    } else if (this.state.secondBarHeight <= 150 && this.state.firstBarHeight > 150) {
+    } else if (secondBarHeight <= 150 && firstBarHeight > 150) {
       return '../assets/park.gif'
     } else {
       return '../assets/dead.gif'
