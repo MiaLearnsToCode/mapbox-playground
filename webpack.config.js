@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const DotEnv = require('dotenv-webpack')
+require('dotenv').config() 
 
 module.exports = {
   entry: './src/app.js',
@@ -34,7 +34,6 @@ module.exports = {
     historyApiFallback: true
   },
   plugins: [
-    new DotEnv(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
@@ -43,6 +42,8 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       { from: './src/assets', to: 'assets' }
-    ])
+    ]),
+    new webpack.EnvironmentPlugin(['MAPBOX_ACCESS_TOKEN'])
   ]
 }
+
