@@ -25,18 +25,30 @@ For this game I created my own custom mapbox style, if you want to use it here i
 
 When the user lands on the homepage they can choose to see the instructions or start a new game:
 
+----
+
 <img src="./src/assets/readme/homepage.png">
+
+----
 
 Here are the instructions: 
 
-<img src="./src/assets/readme/navigation.png" width=400>
-<img src="./src/assets/readme/rotation.png" width=400>
+----
+
+<img src="./src/assets/readme/navigation.png">
+<img src="./src/assets/readme/rotation.png">
 <img src="./src/assets/readme/characters.png">
+
+----
 
 In the game, there are two life bars that indicate what the bee needs. The bars increases if the bee visits a coffee shop or a park respectively:
 
-<img src="./src/assets/readme/city.png" width=400>
-<img src="./src/assets/readme/park.png" width=400>
+----
+
+<img src="./src/assets/readme/city.png">
+<img src="./src/assets/readme/park.png">
+
+----
 
 ## Game Logic & Challenges
 
